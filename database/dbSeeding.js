@@ -49,7 +49,7 @@ writer.end()
 
 
 
- pool.query(`COPY products FROM '/home/adrian/Documents/hackreactor/w9-hr/similar-items/database/data.csv' DELIMITER ',' CSV HEADER`, (err, data) => {
+ pool.query(`COPY product FROM '/home/adrian/Documents/hackreactor/w9-hr/similar-items/database/data.csv' DELIMITER ',' CSV HEADER`, (err, data) => {
   console.log(err, data)
 })
 
