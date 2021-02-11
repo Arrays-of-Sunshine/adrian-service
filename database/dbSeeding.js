@@ -33,7 +33,6 @@ const pool = new Pool({
     cutPrice: '2.99',
     rating: '2',
     reviewCount: 192
-
   })
 
  }
@@ -42,14 +41,14 @@ const pool = new Pool({
 // USER_ID USERNAME
 
 writer.end()
+
 */
 
 
 
 
 
-
- pool.query(`COPY products FROM '/home/adrian/Documents/hackreactor/w9-hr/similar-items/database/data.csv' DELIMITER ',' CSV HEADER`, (err, data) => {
+ pool.query(`COPY products FROM '/home/adrian/Documents/hackreactor/w11-hr/adrian-service/database/data.csv' DELIMITER ',' CSV HEADER`, (err, data) => {
   console.log(err, data)
 })
 

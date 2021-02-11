@@ -1,35 +1,47 @@
 const mysql = require('mysql');
 const Promise = require('bluebird');
+const pg = require('pg')
+const {Pool, Client} = require('pg')
 
-const connection = mysql.createConnection({
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || '',
-  database: process.env.MYSQL_DB || 'fec'
-});
+// const connection = mysql.createConnection({
+//   host: process.env.MYSQL_HOST || 'localhost',
+//   user: process.env.MYSQL_USER || 'root',
+//   password: process.env.MYSQL_PASSWORD || '',
+//   database: process.env.MYSQL_DB || 'fec'
+// });
 
-connection.connect(err => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('connected to db');
-  }
-});
-
-const db = Promise.promisifyAll(connection, {multiArgs: true});
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  password: 'adrian123',
+  database: 'fec',
+})
 
 
-const getSimilarProducts = (id) => {
-  let queryString = `SELECT category FROM products WHERE id = ${id}`;
+// connection.connect(err => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log('connected to db');
+//   }
+// });
 
-  return db.queryAsync(queryString).spread(results => results)
-    .then(results => {
-      let category = results[0].category;
+// const db = Promise.promisifyAll(connection, {multiArgs: true});
 
-      queryString = `SELECT id, name, imageUrl, rating, reviewCount, isFavorite, price, cutPrice FROM products WHERE category = ${category} ORDER BY RAND() LIMIT 16`;
 
-      return db.queryAsync(queryString).spread(results => results);
-    });
+const getSimilarProducts = async (id) => {
+  // let queryString = `SELECT category FROM products WHERE id = ${id}`;
+
+  // return db.queryAsync(queryString).spread(results => results)
+  //   .then(results => {
+  //     let category = results[0].category;
+
+  //     queryString = `SELECT id, name, imageUrl, rating, reviewCount, isFavorite, price, cutPrice FROM products WHERE category = ${category} ORDER BY RAND() LIMIT 16`;
+
+  //     return db.queryAsync(queryString).spread(results => results);
+  //   });
+
+
 
 };
 
