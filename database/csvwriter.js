@@ -11,7 +11,7 @@ var faker = require('faker');
 
 
 writer.pipe(fs.createWriteStream('data.csv'))
-for (let i = 0; i < 10000000; i++) {
+for (let i = 0; i < 1000000; i++) {
  writer.write({
    id: i,
    name:faker.name.firstName(),
